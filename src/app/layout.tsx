@@ -1,3 +1,4 @@
+import { getCSPNonce } from '@/resources/lib/csp';
 import type { Metadata } from 'next';
 import 'primeflex/primeflex.css';
 import 'primeicons/primeicons.css';
@@ -17,11 +18,15 @@ interface RootLayoutProps {
   readonly children: React.ReactNode;
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default async function RootLayout({ children }: RootLayoutProps) {
+  const nonce = await getCSPNonce();
+  const value = {
+    nonce: nonce, // Pass nonce to PrimeReact context
+  };
   return (
     <html lang="en">
-      <body>
-        <PrimeReactProvider>{children}</PrimeReactProvider>
+      <body nonce={nonce}>
+        <PrimeReactProvider value={value}>{children}</PrimeReactProvider>
       </body>
     </html>
   );
