@@ -50,8 +50,8 @@ export function buildCSPHeader(nonce: string, isDevelopment: boolean): string {
     // อนุญาตให้โหลดรูปภาพจาก: origin เดียวกัน, data URLs, blob URLs
     "img-src 'self' data: blob:",
 
-    // อนุญาต styles จาก: origin เดียวกัน + inline styles ที่มี nonce ถูกต้อง
-    `style-src 'self' 'nonce-${nonce}'`,
+    // อนุญาตให้โหลด styles จาก origin เดียวกัน และอนุญาต inline styles ทั้งหมด
+    "style-src 'self' 'unsafe-inline'",
 
     // อนุญาตให้โหลด fonts จาก origin เดียวกัน
     "font-src 'self'",

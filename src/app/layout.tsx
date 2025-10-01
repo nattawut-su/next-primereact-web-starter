@@ -25,7 +25,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
   };
   return (
     <html lang="en">
-      <body nonce={nonce}>
+      <body>
         <PrimeReactProvider value={value}>{children}</PrimeReactProvider>
       </body>
     </html>
